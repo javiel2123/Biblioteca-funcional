@@ -1,14 +1,10 @@
-// /api/index.js
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const Autor = require('../Autor');
-const Libro = require('../Libro');
+const express = require("express");
+const Autor = require("./Autor");
+const Libro = require("./Libro");
 
 const app = express();
-app.use(bodyParser.json());
 
-// Clase Biblioteca  controlador
+// Clase Biblioteca controlador
 class Biblioteca {
   constructor() {
     this.libros = [];
@@ -131,10 +127,10 @@ app.get("/libros/devolver/:id", (req, res) => {
     res.status(404).send("Libro no encontrado.");
   }
 });
-const PORT = 3003;
+
+// Iniciar el servidor
+const PORT = process.env.PORT || 3000; // Usa process.env.PORT o 3000 por defecto
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
-// Exportar la función para Vercel
-module.exports = app;
